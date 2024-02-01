@@ -9,5 +9,5 @@ if ($lastSaveDateUI -gt $lastSaveDatePy) {
     & pyside6-uic form.ui -o ui_form.py
     Write-Host "ui_form.py updated."
 } else {
-    Write-Host "No conversion."
+    Write-Host "No update."
 }

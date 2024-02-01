@@ -47,6 +47,7 @@ class DragListWidget(QListWidget):
         self.setDropIndicatorShown(True)
         self.setDefaultDropAction(Qt.MoveAction)
         self.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
+        self.setSortingEnabled(True)
 
     def dragEnterEvent(self, event: QDragEnterEvent):
         mime_data = event.mimeData()

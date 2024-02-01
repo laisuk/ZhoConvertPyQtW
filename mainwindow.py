@@ -34,21 +34,22 @@ class MainWindow(QMainWindow):
         QObject.connect(self.ui.rbZhTw, SIGNAL("clicked()"), self.zhtw_select)
         QObject.connect(self.ui.tbSource, SIGNAL("clicked()"), self.zhtw_select)
         QObject.connect(self.ui.btnDetect, SIGNAL("clicked()"), self.detect_source_text_info)
+        QObject.connect(self.ui.tabWidget, SIGNAL("currentChanged(int)"), self.tab_bar_changed)
+        QObject.connect(self.ui.cbZhTw, SIGNAL("clicked(bool)"), self.cbzhtw_clicked)
         self.ui.btnAdd.clicked.connect(self.btn_add_clicked)
         self.ui.btnRemove.clicked.connect(self.btn_remove_clicked)
         self.ui.btnClear.clicked.connect(self.btn_clear_clicked)
         self.ui.btnPreview.clicked.connect(self.btn_preview_clicked)
         self.ui.btnPreviewClear.clicked.connect(self.btn_preview_clear_clicked)
         self.ui.btnOutDir.clicked.connect(self.btn_out_directory_clicked)
-        self.ui.tabWidget.currentChanged.connect(self.tab_bar_changed)
+        # self.ui.tabWidget.currentChanged.connect(self.tab_bar_changed)
         self.ui.actionAbout.triggered.connect(self.action_about_triggered)
         self.ui.actionExit.triggered.connect(btn_exit_click)
 
     def action_about_triggered(self):
-        QMessageBox.about(self, "About", "Zho Converter version 1.0 (c) 2023 Bryan Lai")
+        QMessageBox.about(self, "About", "Zho Converter version 1.0 (c) 2024 Bryan Lai")
 
     def tab_bar_changed(self, index: int) -> None:
-        # print(index)
         match index:
             case 0:
                 self.ui.btnOpenFile.setEnabled(True)
@@ -75,6 +76,10 @@ class MainWindow(QMainWindow):
 
     def zhtw_select(self):
         self.ui.cbZhTw.setCheckState(Qt.CheckState.Checked)
+
+    def cbzhtw_clicked(self, status: bool) -> None:
+        if status:
+            self.ui.rbZhTw.setChecked(True)
 
     def btn_paste_click(self):
         if not QApplication.clipboard().text():

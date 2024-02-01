@@ -127,6 +127,7 @@ class Ui_MainWindow(object):
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setFont(font1)
+        self.tabWidget.setTabShape(QTabWidget.Rounded)
         self.tab_main = QWidget()
         self.tab_main.setObjectName(u"tab_main")
         self.verticalLayout_2 = QVBoxLayout(self.tab_main)
@@ -267,12 +268,14 @@ class Ui_MainWindow(object):
         self.listSource.setDragDropMode(QAbstractItemView.InternalMove)
         self.listSource.setAlternatingRowColors(True)
         self.listSource.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        self.listSource.setSortingEnabled(True)
 
         self.horizontalLayout_listbox.addWidget(self.listSource)
 
         self.tbPreview = QPlainTextEdit(self.tab_batch)
         self.tbPreview.setObjectName(u"tbPreview")
         self.tbPreview.setFont(font2)
+        self.tbPreview.setAcceptDrops(False)
         self.tbPreview.setFrameShape(QFrame.Box)
         self.tbPreview.setLineWidth(2)
 
@@ -440,7 +443,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 993, 22))
+        self.menubar.setGeometry(QRect(0, 0, 993, 21))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuHelp = QMenu(self.menubar)
