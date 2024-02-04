@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Zho Converter PyQt</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -162,7 +162,7 @@
         </property>
         <widget class="QWidget" name="tab_main">
          <attribute name="title">
-          <string>Main Convert</string>
+          <string>Single Convert （單文件）</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
@@ -188,7 +188,7 @@
                </font>
               </property>
               <property name="frameShape">
-               <enum>QFrame::Panel</enum>
+               <enum>QFrame::Box</enum>
               </property>
               <property name="lineWidth">
                <number>2</number>
@@ -232,10 +232,10 @@
            </layout>
           </item>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_textbox_action">
+           <layout class="QHBoxLayout" name="horizontalLayout_textbox_action" stretch="1,1">
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_source">
-              <item alignment="Qt::AlignVCenter">
+              <item>
                <widget class="QLabel" name="lblSource">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -276,6 +276,12 @@
               </item>
               <item>
                <widget class="QLabel" name="lblSourceCode">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="font">
                  <font>
                   <pointsize>10</pointsize>
@@ -291,6 +297,12 @@
               </item>
               <item alignment="Qt::AlignRight">
                <widget class="QLabel" name="lblCharCount">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="font">
                  <font>
                   <pointsize>10</pointsize>
@@ -309,13 +321,27 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="font">
                  <font>
                   <pointsize>10</pointsize>
+                  <bold>true</bold>
                  </font>
                 </property>
+                <property name="toolTip">
+                 <string>Refresh source info</string>
+                </property>
                 <property name="text">
-                 <string>Detect</string>
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resource.qrc">
+                  <normaloff>:/images/resource/icons8-refresh-48.png</normaloff>:/images/resource/icons8-refresh-48.png</iconset>
                 </property>
                </widget>
               </item>
@@ -341,7 +367,7 @@
             </item>
             <item>
              <layout class="QHBoxLayout" name="horizontalLayout_deatination">
-              <item alignment="Qt::AlignVCenter">
+              <item>
                <widget class="QLabel" name="lblDestination">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -418,7 +444,7 @@
         </widget>
         <widget class="QWidget" name="tab_batch">
          <attribute name="title">
-          <string>Batch Convert</string>
+          <string>Batch Convert （批量）</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
@@ -486,7 +512,6 @@
                 <property name="font">
                  <font>
                   <pointsize>10</pointsize>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -500,7 +525,6 @@
                 <property name="font">
                  <font>
                   <pointsize>10</pointsize>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -514,7 +538,6 @@
                 <property name="font">
                  <font>
                   <pointsize>10</pointsize>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -527,13 +550,16 @@
                <widget class="QPushButton" name="btnPreview">
                 <property name="font">
                  <font>
-                  <pointsize>10</pointsize>
-                  <weight>50</weight>
+                  <pointsize>9</pointsize>
                   <bold>false</bold>
                  </font>
                 </property>
                 <property name="text">
-                 <string>Preview</string>
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resource.qrc">
+                  <normaloff>:/images/resource/icons8-preview-48.png</normaloff>:/images/resource/icons8-preview-48.png</iconset>
                 </property>
                </widget>
               </item>
@@ -555,7 +581,13 @@
                  </font>
                 </property>
                 <property name="text">
-                 <string>Output</string>
+                 <string>Output:</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                </property>
+                <property name="margin">
+                 <number>1</number>
                 </property>
                </widget>
               </item>
@@ -574,15 +606,24 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="font">
                  <font>
                   <pointsize>10</pointsize>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
                 <property name="text">
-                 <string>…</string>
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="resource.qrc">
+                  <normaloff>:/images/resource/icons8-folder-64.png</normaloff>:/images/resource/icons8-folder-64.png</iconset>
                 </property>
                </widget>
               </item>
@@ -594,8 +635,14 @@
                   <verstretch>0</verstretch>
                  </sizepolicy>
                 </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
                 <property name="text">
-                 <string>Clear</string>
+                 <string>AC</string>
                 </property>
                </widget>
               </item>
@@ -679,12 +726,21 @@
           <property name="font">
            <font>
             <pointsize>12</pointsize>
-            <weight>75</weight>
             <bold>true</bold>
            </font>
           </property>
           <property name="text">
            <string>Process</string>
+          </property>
+          <property name="icon">
+           <iconset resource="resource.qrc">
+            <normaloff>:/images/resource/icons8-start-48.png</normaloff>:/images/resource/icons8-start-48.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>24</width>
+            <height>24</height>
+           </size>
           </property>
          </widget>
         </item>
@@ -753,7 +809,7 @@
      <x>0</x>
      <y>0</y>
      <width>993</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -807,7 +863,9 @@
    <header location="global">custom_widgets</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroup_config"/>

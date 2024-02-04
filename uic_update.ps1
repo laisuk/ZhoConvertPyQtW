@@ -1,13 +1,40 @@
+Set-Location -LiteralPath $PSScriptRoot
 $fileUI = Get-Item "./form.ui"
 $lastSaveDateUI = $fileUI.LastWriteTime
 "form.ui:    " + $lastSaveDateUI
-$filePy = Get-Item "./ui_form.py"
-$lastSaveDatePy = $filePy.LastWriteTime
-"ui_form.py: " + $lastSaveDatePy
-"form.ui Newer than ui_form.py : " + ($lastSaveDateUI -gt $lastSaveDatePy)
-if ($lastSaveDateUI -gt $lastSaveDatePy) {
+$fileUiPy = Get-Item "./ui_form.py"
+$lastSaveDateUiPy = $fileUiPy.LastWriteTime
+"ui_form.py: " + $lastSaveDateUiPy
+Write-Host "form.ui Newer than ui_form.py : " -NoNewline
+$IsUiNewer = ($lastSaveDateUI -gt $lastSaveDateUiPy)
+if ($IsUiNewer)
+{
+    Write-Host $IsUiNewer -ForegroundColor Green
     & pyside6-uic form.ui -o ui_form.py
-    Write-Host "ui_form.py updated."
-} else {
-    Write-Host "No update."
+    Write-Host "ui_form.py updated." -ForegroundColor Blue
+}
+else
+{
+    Write-Host $IsUiNewer -ForegroundColor Red
+    Write-Host "No Ui update needed." -ForegroundColor Blue
+}
+
+$fileQrc = Get-Item "./resource.qrc"
+$lastSaveDateQrc = $fileQrc.LastWriteTime
+"resource.qrc: " + $lastSaveDateQrc
+$fileQrcPy = Get-Item "./resource_rc.py"
+$lastSaveDateQrcPy = $fileQrcPy.LastWriteTime
+"resource_rc.py: " + $lastSaveDateQrcPy
+Write-Host "resource.qrc Newer than resource_rc.py : " -NoNewline
+$IsQrcNewer = ($lastSaveDateQrc -gt $lastSaveDateQrcPy)
+if ($IsQrcNewer)
+{
+    Write-Host $IsQrcNewer -ForegroundColor Green
+    & pyside6-rcc resource.qrc -o resource_rc.py
+    Write-Host "resource_rc.py updated." -ForegroundColor Blue
+}
+else
+{
+    Write-Host $IsQrcNewer -ForegroundColor Red
+    Write-Host "No Qrc update needed." -ForegroundColor Blue
 }

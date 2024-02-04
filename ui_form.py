@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (QAbstractItemView, QApplication, QButtonGroup, QC
     QWidget)
 
 from custom_widgets import (DragListWidget, TextEditWidget)
+import resource_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -142,7 +143,7 @@ class Ui_MainWindow(object):
         font2.setFamilies([u"Consolas"])
         font2.setPointSize(11)
         self.tbSource.setFont(font2)
-        self.tbSource.setFrameShape(QFrame.Panel)
+        self.tbSource.setFrameShape(QFrame.Box)
         self.tbSource.setLineWidth(2)
         self.tbSource.setMidLineWidth(0)
         self.tbSource.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -182,10 +183,15 @@ class Ui_MainWindow(object):
         self.lblSource.setLineWidth(1)
         self.lblSource.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_source.addWidget(self.lblSource, 0, Qt.AlignVCenter)
+        self.horizontalLayout_source.addWidget(self.lblSource)
 
         self.lblSourceCode = QLabel(self.tab_main)
         self.lblSourceCode.setObjectName(u"lblSourceCode")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.lblSourceCode.sizePolicy().hasHeightForWidth())
+        self.lblSourceCode.setSizePolicy(sizePolicy1)
         self.lblSourceCode.setFont(font1)
         self.lblSourceCode.setMargin(5)
 
@@ -193,6 +199,8 @@ class Ui_MainWindow(object):
 
         self.lblCharCount = QLabel(self.tab_main)
         self.lblCharCount.setObjectName(u"lblCharCount")
+        sizePolicy1.setHeightForWidth(self.lblCharCount.sizePolicy().hasHeightForWidth())
+        self.lblCharCount.setSizePolicy(sizePolicy1)
         self.lblCharCount.setFont(font1)
 
         self.horizontalLayout_source.addWidget(self.lblCharCount, 0, Qt.AlignRight)
@@ -201,7 +209,14 @@ class Ui_MainWindow(object):
         self.btnDetect.setObjectName(u"btnDetect")
         sizePolicy.setHeightForWidth(self.btnDetect.sizePolicy().hasHeightForWidth())
         self.btnDetect.setSizePolicy(sizePolicy)
-        self.btnDetect.setFont(font1)
+        self.btnDetect.setMaximumSize(QSize(30, 16777215))
+        font3 = QFont()
+        font3.setPointSize(10)
+        font3.setBold(True)
+        self.btnDetect.setFont(font3)
+        icon = QIcon()
+        icon.addFile(u":/images/resource/icons8-refresh-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btnDetect.setIcon(icon)
 
         self.horizontalLayout_source.addWidget(self.btnDetect)
 
@@ -228,7 +243,7 @@ class Ui_MainWindow(object):
         self.lblDestination.setFrameShape(QFrame.Box)
         self.lblDestination.setAlignment(Qt.AlignCenter)
 
-        self.horizontalLayout_deatination.addWidget(self.lblDestination, 0, Qt.AlignVCenter)
+        self.horizontalLayout_deatination.addWidget(self.lblDestination)
 
         self.lblDestinationCode = QLabel(self.tab_main)
         self.lblDestinationCode.setObjectName(u"lblDestinationCode")
@@ -248,6 +263,8 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_textbox_action.addLayout(self.horizontalLayout_deatination)
 
+        self.horizontalLayout_textbox_action.setStretch(0, 1)
+        self.horizontalLayout_textbox_action.setStretch(1, 1)
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_textbox_action)
 
@@ -290,9 +307,6 @@ class Ui_MainWindow(object):
         self.horizontalLayout_listbox_buttons.setObjectName(u"horizontalLayout_listbox_buttons")
         self.btnAdd = QPushButton(self.tab_batch)
         self.btnAdd.setObjectName(u"btnAdd")
-        font3 = QFont()
-        font3.setPointSize(10)
-        font3.setBold(True)
         self.btnAdd.setFont(font3)
 
         self.horizontalLayout_listbox_buttons.addWidget(self.btnAdd)
@@ -312,9 +326,12 @@ class Ui_MainWindow(object):
         self.btnPreview = QPushButton(self.tab_batch)
         self.btnPreview.setObjectName(u"btnPreview")
         font4 = QFont()
-        font4.setPointSize(10)
+        font4.setPointSize(9)
         font4.setBold(False)
         self.btnPreview.setFont(font4)
+        icon1 = QIcon()
+        icon1.addFile(u":/images/resource/icons8-preview-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btnPreview.setIcon(icon1)
 
         self.horizontalLayout_listbox_buttons.addWidget(self.btnPreview)
 
@@ -325,12 +342,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_preview.setObjectName(u"horizontalLayout_preview")
         self.label = QLabel(self.tab_batch)
         self.label.setObjectName(u"label")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(0)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
-        self.label.setSizePolicy(sizePolicy1)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy2)
         self.label.setFont(font1)
+        self.label.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignVCenter)
+        self.label.setMargin(1)
 
         self.horizontalLayout_preview.addWidget(self.label)
 
@@ -343,7 +362,11 @@ class Ui_MainWindow(object):
         self.btnOutDir.setObjectName(u"btnOutDir")
         sizePolicy.setHeightForWidth(self.btnOutDir.sizePolicy().hasHeightForWidth())
         self.btnOutDir.setSizePolicy(sizePolicy)
+        self.btnOutDir.setMaximumSize(QSize(30, 16777215))
         self.btnOutDir.setFont(font3)
+        icon2 = QIcon()
+        icon2.addFile(u":/images/resource/icons8-folder-64.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btnOutDir.setIcon(icon2)
 
         self.horizontalLayout_preview.addWidget(self.btnOutDir)
 
@@ -351,6 +374,7 @@ class Ui_MainWindow(object):
         self.btnPreviewClear.setObjectName(u"btnPreviewClear")
         sizePolicy.setHeightForWidth(self.btnPreviewClear.sizePolicy().hasHeightForWidth())
         self.btnPreviewClear.setSizePolicy(sizePolicy)
+        self.btnPreviewClear.setFont(font3)
 
         self.horizontalLayout_preview.addWidget(self.btnPreviewClear)
 
@@ -403,6 +427,10 @@ class Ui_MainWindow(object):
         font5.setPointSize(12)
         font5.setBold(True)
         self.btnProcess.setFont(font5)
+        icon3 = QIcon()
+        icon3.addFile(u":/images/resource/icons8-start-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btnProcess.setIcon(icon3)
+        self.btnProcess.setIconSize(QSize(24, 24))
 
         self.horizontalLayout_process.addWidget(self.btnProcess, 0, Qt.AlignHCenter)
 
@@ -443,7 +471,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 993, 21))
+        self.menubar.setGeometry(QRect(0, 0, 993, 22))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuHelp = QMenu(self.menubar)
@@ -468,7 +496,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"Zho Converter PyQt", None))
         self.actionExit.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.actionAbout.setText(QCoreApplication.translate("MainWindow", u"About", None))
         self.rbS2t.setText(QCoreApplication.translate("MainWindow", u"zh-Hans \uff08\u7c21\uff09 To Zh-Hant \uff08\u7e41\uff09", None))
@@ -481,21 +509,24 @@ class Ui_MainWindow(object):
         self.lblSource.setText(QCoreApplication.translate("MainWindow", u"Source", None))
         self.lblSourceCode.setText("")
         self.lblCharCount.setText("")
-        self.btnDetect.setText(QCoreApplication.translate("MainWindow", u"Detect", None))
+#if QT_CONFIG(tooltip)
+        self.btnDetect.setToolTip(QCoreApplication.translate("MainWindow", u"Refresh source info", None))
+#endif // QT_CONFIG(tooltip)
+        self.btnDetect.setText("")
         self.btnPaste.setText(QCoreApplication.translate("MainWindow", u"Paste", None))
         self.lblDestination.setText(QCoreApplication.translate("MainWindow", u"Destination", None))
         self.lblDestinationCode.setText("")
         self.btnCopy.setText(QCoreApplication.translate("MainWindow", u"Copy", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main), QCoreApplication.translate("MainWindow", u"Main Convert", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main), QCoreApplication.translate("MainWindow", u"Single Convert \uff08\u55ae\u6587\u4ef6\uff09", None))
         self.btnAdd.setText(QCoreApplication.translate("MainWindow", u"\uff0b", None))
         self.btnRemove.setText(QCoreApplication.translate("MainWindow", u"\u2014", None))
         self.btnClear.setText(QCoreApplication.translate("MainWindow", u"AC", None))
-        self.btnPreview.setText(QCoreApplication.translate("MainWindow", u"Preview", None))
-        self.label.setText(QCoreApplication.translate("MainWindow", u"Output", None))
+        self.btnPreview.setText("")
+        self.label.setText(QCoreApplication.translate("MainWindow", u"Output:", None))
         self.lineEditDir.setText(QCoreApplication.translate("MainWindow", u"./output", None))
-        self.btnOutDir.setText(QCoreApplication.translate("MainWindow", u"\u2026", None))
-        self.btnPreviewClear.setText(QCoreApplication.translate("MainWindow", u"Clear", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_batch), QCoreApplication.translate("MainWindow", u"Batch Convert", None))
+        self.btnOutDir.setText("")
+        self.btnPreviewClear.setText(QCoreApplication.translate("MainWindow", u"AC", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_batch), QCoreApplication.translate("MainWindow", u"Batch Convert \uff08\u6279\u91cf\uff09", None))
         self.btnOpenFile.setText(QCoreApplication.translate("MainWindow", u"Open File", None))
         self.lblFilename.setText("")
         self.btnProcess.setText(QCoreApplication.translate("MainWindow", u"Process", None))

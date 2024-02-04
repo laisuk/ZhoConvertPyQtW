@@ -69,7 +69,9 @@ class MainWindow(QMainWindow):
             strip_text = re.sub(r'[\WA-Za-z0-9_]', "", text)
             test_text = strip_text if len(strip_text) < 50 else strip_text[0:50]
             self.update_source_code(check_text_code(test_text))
-            self.ui.lblFilename.setText(self.ui.tbSource.content_filename)
+            self.ui.lblFilename.setText(os.path.basename(self.ui.tbSource.content_filename))
+        if self.ui.tbSource.content_filename:
+            self.statusBar().showMessage(f"File: {self.ui.tbSource.content_filename}")
 
     def std_hk_select(self):
         self.ui.cbZhTw.setCheckState(Qt.CheckState.Unchecked)
@@ -113,7 +115,7 @@ class MainWindow(QMainWindow):
             contents = f.read()
 
         self.ui.tbSource.document().setPlainText(contents)
-        self.ui.tbSource.content_filename = os.path.basename(filename[0])
+        self.ui.tbSource.content_filename = filename[0]
         self.detect_source_text_info()
         self.ui.statusbar.showMessage(f"File: {filename[0]}")
 
@@ -170,6 +172,7 @@ class MainWindow(QMainWindow):
                 msg.exec()
                 self.ui.statusbar.showMessage("Invalid output directory.")
             else:
+                self.ui.tbPreview.clear()
                 for index in range(self.ui.listSource.count()):
                     file_path: str = self.ui.listSource.item(index).text()
                     if os.path.exists(file_path):
