@@ -30,7 +30,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(993, 723)
+        MainWindow.resize(992, 751)
         self.actionExit = QAction(MainWindow)
         self.actionExit.setObjectName(u"actionExit")
         self.actionExit.setMenuRole(QAction.TextHeuristicRole)
@@ -129,6 +129,7 @@ class Ui_MainWindow(object):
         self.tabWidget.setObjectName(u"tabWidget")
         self.tabWidget.setFont(font1)
         self.tabWidget.setTabShape(QTabWidget.Rounded)
+        self.tabWidget.setIconSize(QSize(20, 20))
         self.tab_main = QWidget()
         self.tab_main.setObjectName(u"tab_main")
         self.verticalLayout_2 = QVBoxLayout(self.tab_main)
@@ -154,7 +155,7 @@ class Ui_MainWindow(object):
         self.tbDestination.setObjectName(u"tbDestination")
         self.tbDestination.setFont(font2)
         self.tbDestination.setAcceptDrops(False)
-        self.tbDestination.setFrameShape(QFrame.Panel)
+        self.tbDestination.setFrameShape(QFrame.Box)
         self.tbDestination.setLineWidth(2)
         self.tbDestination.setMidLineWidth(0)
         self.tbDestination.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -220,6 +221,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_source.addWidget(self.btnDetect)
 
+        self.btnClearTbSource = QPushButton(self.tab_main)
+        self.btnClearTbSource.setObjectName(u"btnClearTbSource")
+        self.btnClearTbSource.setMaximumSize(QSize(30, 16777215))
+        self.btnClearTbSource.setFont(font3)
+
+        self.horizontalLayout_source.addWidget(self.btnClearTbSource)
+
         self.btnPaste = QPushButton(self.tab_main)
         self.btnPaste.setObjectName(u"btnPaste")
         sizePolicy.setHeightForWidth(self.btnPaste.sizePolicy().hasHeightForWidth())
@@ -252,6 +260,13 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_deatination.addWidget(self.lblDestinationCode)
 
+        self.btnClearTbDestination = QPushButton(self.tab_main)
+        self.btnClearTbDestination.setObjectName(u"btnClearTbDestination")
+        self.btnClearTbDestination.setMaximumSize(QSize(30, 16777215))
+        self.btnClearTbDestination.setFont(font3)
+
+        self.horizontalLayout_deatination.addWidget(self.btnClearTbDestination)
+
         self.btnCopy = QPushButton(self.tab_main)
         self.btnCopy.setObjectName(u"btnCopy")
         sizePolicy.setHeightForWidth(self.btnCopy.sizePolicy().hasHeightForWidth())
@@ -268,7 +283,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addLayout(self.horizontalLayout_textbox_action)
 
-        self.tabWidget.addTab(self.tab_main, "")
+        icon1 = QIcon()
+        icon1.addFile(u":/images/resource/icons8-document-64.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.tabWidget.addTab(self.tab_main, icon1, "")
         self.tab_batch = QWidget()
         self.tab_batch.setObjectName(u"tab_batch")
         self.verticalLayout = QVBoxLayout(self.tab_batch)
@@ -329,9 +346,10 @@ class Ui_MainWindow(object):
         font4.setPointSize(9)
         font4.setBold(False)
         self.btnPreview.setFont(font4)
-        icon1 = QIcon()
-        icon1.addFile(u":/images/resource/icons8-preview-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btnPreview.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u":/images/resource/icons8-preview-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btnPreview.setIcon(icon2)
+        self.btnPreview.setIconSize(QSize(16, 16))
 
         self.horizontalLayout_listbox_buttons.addWidget(self.btnPreview)
 
@@ -364,9 +382,9 @@ class Ui_MainWindow(object):
         self.btnOutDir.setSizePolicy(sizePolicy)
         self.btnOutDir.setMaximumSize(QSize(30, 16777215))
         self.btnOutDir.setFont(font3)
-        icon2 = QIcon()
-        icon2.addFile(u":/images/resource/icons8-folder-64.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btnOutDir.setIcon(icon2)
+        icon3 = QIcon()
+        icon3.addFile(u":/images/resource/icons8-folder-64.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btnOutDir.setIcon(icon3)
 
         self.horizontalLayout_preview.addWidget(self.btnOutDir)
 
@@ -386,7 +404,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout_listbox_action)
 
-        self.tabWidget.addTab(self.tab_batch, "")
+        icon4 = QIcon()
+        icon4.addFile(u":/images/resource/icons8-documents-64.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.tabWidget.addTab(self.tab_batch, icon4, "")
 
         self.horizontalLayout.addWidget(self.tabWidget)
 
@@ -422,14 +442,14 @@ class Ui_MainWindow(object):
         self.btnProcess.setObjectName(u"btnProcess")
         sizePolicy.setHeightForWidth(self.btnProcess.sizePolicy().hasHeightForWidth())
         self.btnProcess.setSizePolicy(sizePolicy)
-        self.btnProcess.setMinimumSize(QSize(120, 0))
+        self.btnProcess.setMinimumSize(QSize(110, 0))
         font5 = QFont()
         font5.setPointSize(12)
         font5.setBold(True)
         self.btnProcess.setFont(font5)
-        icon3 = QIcon()
-        icon3.addFile(u":/images/resource/icons8-start-48.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.btnProcess.setIcon(icon3)
+        icon5 = QIcon()
+        icon5.addFile(u":/images/resource/icons8-start-48.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.btnProcess.setIcon(icon5)
         self.btnProcess.setIconSize(QSize(24, 24))
 
         self.horizontalLayout_process.addWidget(self.btnProcess, 0, Qt.AlignHCenter)
@@ -471,7 +491,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 993, 22))
+        self.menubar.setGeometry(QRect(0, 0, 992, 22))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuHelp = QMenu(self.menubar)
@@ -502,10 +522,10 @@ class Ui_MainWindow(object):
         self.rbS2t.setText(QCoreApplication.translate("MainWindow", u"zh-Hans \uff08\u7c21\uff09 To Zh-Hant \uff08\u7e41\uff09", None))
         self.rbT2s.setText(QCoreApplication.translate("MainWindow", u"zh-Hant \uff08\u7e41\uff09 To zh-Hans \uff08\u7c21\uff09", None))
         self.rbStd.setText(QCoreApplication.translate("MainWindow", u"Standard \uff08\u6a19\u6e96\u7c21\u7e41\uff09", None))
-        self.rbZhTw.setText(QCoreApplication.translate("MainWindow", u"ZH/TW\uff08\u4e2d\u81fa\u7c21\u7e41\uff09", None))
-        self.rbHK.setText(QCoreApplication.translate("MainWindow", u"Hong Kong\uff08\u9999\u6e2f\u7c21\u7e41\uff09", None))
-        self.cbZhTw.setText(QCoreApplication.translate("MainWindow", u"ZH/TW Idioms\uff08\u901a\u7528\u8a9e\uff09", None))
-        self.cbPunct.setText(QCoreApplication.translate("MainWindow", u"Punctuations\uff08\u6a19\u9ede\uff09", None))
+        self.rbZhTw.setText(QCoreApplication.translate("MainWindow", u"ZH/TW \uff08\u4e2d\u81fa\u7c21\u7e41\uff09", None))
+        self.rbHK.setText(QCoreApplication.translate("MainWindow", u"Hong Kong \uff08\u9999\u6e2f\u7c21\u7e41\uff09", None))
+        self.cbZhTw.setText(QCoreApplication.translate("MainWindow", u"ZH/TW Idioms \uff08\u901a\u7528\u8a9e\uff09", None))
+        self.cbPunct.setText(QCoreApplication.translate("MainWindow", u"Punctuations \uff08\u6a19\u9ede\uff09", None))
         self.lblSource.setText(QCoreApplication.translate("MainWindow", u"Source", None))
         self.lblSourceCode.setText("")
         self.lblCharCount.setText("")
@@ -513,11 +533,19 @@ class Ui_MainWindow(object):
         self.btnDetect.setToolTip(QCoreApplication.translate("MainWindow", u"Refresh source info", None))
 #endif // QT_CONFIG(tooltip)
         self.btnDetect.setText("")
+#if QT_CONFIG(tooltip)
+        self.btnClearTbSource.setToolTip(QCoreApplication.translate("MainWindow", u"Clear source box contents", None))
+#endif // QT_CONFIG(tooltip)
+        self.btnClearTbSource.setText(QCoreApplication.translate("MainWindow", u"AC", None))
         self.btnPaste.setText(QCoreApplication.translate("MainWindow", u"Paste", None))
         self.lblDestination.setText(QCoreApplication.translate("MainWindow", u"Destination", None))
         self.lblDestinationCode.setText("")
+#if QT_CONFIG(tooltip)
+        self.btnClearTbDestination.setToolTip(QCoreApplication.translate("MainWindow", u"Clear destination contents", None))
+#endif // QT_CONFIG(tooltip)
+        self.btnClearTbDestination.setText(QCoreApplication.translate("MainWindow", u"AC", None))
         self.btnCopy.setText(QCoreApplication.translate("MainWindow", u"Copy", None))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main), QCoreApplication.translate("MainWindow", u"Single Convert \uff08\u55ae\u6587\u4ef6\uff09", None))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main), QCoreApplication.translate("MainWindow", u"Single Convert \uff08\u55ae\u4ef6\uff09", None))
         self.btnAdd.setText(QCoreApplication.translate("MainWindow", u"\uff0b", None))
         self.btnRemove.setText(QCoreApplication.translate("MainWindow", u"\u2014", None))
         self.btnClear.setText(QCoreApplication.translate("MainWindow", u"AC", None))

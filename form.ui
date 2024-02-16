@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>993</width>
-    <height>723</height>
+    <width>992</width>
+    <height>751</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -82,7 +82,7 @@
            </font>
           </property>
           <property name="text">
-           <string>ZH/TW（中臺簡繁）</string>
+           <string>ZH/TW （中臺簡繁）</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -100,7 +100,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Hong Kong（香港簡繁）</string>
+           <string>Hong Kong （香港簡繁）</string>
           </property>
           <attribute name="buttonGroup">
            <string notr="true">buttonGroup_region</string>
@@ -119,7 +119,7 @@
            </font>
           </property>
           <property name="text">
-           <string>ZH/TW Idioms（通用語）</string>
+           <string>ZH/TW Idioms （通用語）</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -134,7 +134,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Punctuations（標點）</string>
+           <string>Punctuations （標點）</string>
           </property>
           <property name="checked">
            <bool>true</bool>
@@ -160,9 +160,19 @@
         <property name="currentIndex">
          <number>0</number>
         </property>
+        <property name="iconSize">
+         <size>
+          <width>20</width>
+          <height>20</height>
+         </size>
+        </property>
         <widget class="QWidget" name="tab_main">
+         <attribute name="icon">
+          <iconset resource="resource.qrc">
+           <normaloff>:/images/resource/icons8-document-64.png</normaloff>:/images/resource/icons8-document-64.png</iconset>
+         </attribute>
          <attribute name="title">
-          <string>Single Convert （單文件）</string>
+          <string>Single Convert （單件）</string>
          </attribute>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
@@ -213,7 +223,7 @@
                <bool>false</bool>
               </property>
               <property name="frameShape">
-               <enum>QFrame::Panel</enum>
+               <enum>QFrame::Box</enum>
               </property>
               <property name="lineWidth">
                <number>2</number>
@@ -346,6 +356,28 @@
                </widget>
               </item>
               <item>
+               <widget class="QPushButton" name="btnClearTbSource">
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="toolTip">
+                 <string>Clear source box contents</string>
+                </property>
+                <property name="text">
+                 <string>AC</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="btnPaste">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -419,6 +451,28 @@
                </widget>
               </item>
               <item>
+               <widget class="QPushButton" name="btnClearTbDestination">
+                <property name="maximumSize">
+                 <size>
+                  <width>30</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="font">
+                 <font>
+                  <pointsize>10</pointsize>
+                  <bold>true</bold>
+                 </font>
+                </property>
+                <property name="toolTip">
+                 <string>Clear destination contents</string>
+                </property>
+                <property name="text">
+                 <string>AC</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="btnCopy">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -443,6 +497,10 @@
          </layout>
         </widget>
         <widget class="QWidget" name="tab_batch">
+         <attribute name="icon">
+          <iconset resource="resource.qrc">
+           <normaloff>:/images/resource/icons8-documents-64.png</normaloff>:/images/resource/icons8-documents-64.png</iconset>
+         </attribute>
          <attribute name="title">
           <string>Batch Convert （批量）</string>
          </attribute>
@@ -560,6 +618,12 @@
                 <property name="icon">
                  <iconset resource="resource.qrc">
                   <normaloff>:/images/resource/icons8-preview-48.png</normaloff>:/images/resource/icons8-preview-48.png</iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
                 </property>
                </widget>
               </item>
@@ -719,7 +783,7 @@
           </property>
           <property name="minimumSize">
            <size>
-            <width>120</width>
+            <width>110</width>
             <height>0</height>
            </size>
           </property>
@@ -808,7 +872,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>993</width>
+     <width>992</width>
      <height>22</height>
     </rect>
    </property>

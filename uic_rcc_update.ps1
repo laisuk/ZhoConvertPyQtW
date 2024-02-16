@@ -1,10 +1,13 @@
 Set-Location -LiteralPath $PSScriptRoot
+
 $fileUI = Get-Item "./form.ui"
 $lastSaveDateUI = $fileUI.LastWriteTime
-"form.ui:    " + $lastSaveDateUI
+"form.ui   : " + $lastSaveDateUI
+
 $fileUiPy = Get-Item "./ui_form.py"
 $lastSaveDateUiPy = $fileUiPy.LastWriteTime
 "ui_form.py: " + $lastSaveDateUiPy
+
 Write-Host "form.ui Newer than ui_form.py : " -NoNewline
 $IsUiNewer = ($lastSaveDateUI -gt $lastSaveDateUiPy)
 if ($IsUiNewer)
@@ -21,10 +24,12 @@ else
 
 $fileQrc = Get-Item "./resource.qrc"
 $lastSaveDateQrc = $fileQrc.LastWriteTime
-"resource.qrc: " + $lastSaveDateQrc
+"resource.qrc  : " + $lastSaveDateQrc
+
 $fileQrcPy = Get-Item "./resource_rc.py"
 $lastSaveDateQrcPy = $fileQrcPy.LastWriteTime
 "resource_rc.py: " + $lastSaveDateQrcPy
+
 Write-Host "resource.qrc Newer than resource_rc.py : " -NoNewline
 $IsQrcNewer = ($lastSaveDateQrc -gt $lastSaveDateQrcPy)
 if ($IsQrcNewer)

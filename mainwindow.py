@@ -6,7 +6,7 @@ import sys
 from PySide6.QtCore import Qt, SIGNAL, QObject
 from PySide6.QtWidgets import QApplication, QMainWindow
 from PySide6.QtWidgets import QFileDialog, QMessageBox
-from opencc import OpenCC
+from opencc import OpenCC  # pip install opencc-python-reimplemented
 
 # Important:
 # You need to run the following command to generate the ui_form.py file
@@ -28,6 +28,8 @@ class MainWindow(QMainWindow):
         self.ui.btnSaveAs.clicked.connect(self.btn_savefile_click)
         self.ui.btnProcess.clicked.connect(self.btn_process_click)
         self.ui.btnExit.clicked.connect(btn_exit_click)
+        self.ui.btnClearTbSource.clicked.connect(self.btn_clear_tb_source_clicked)
+        self.ui.btnClearTbDestination.clicked.connect(self.btn_clear_tb_destination_clicked)
         QObject.connect(self.ui.tbSource, SIGNAL("textChanged()"), self.update_char_count)
         QObject.connect(self.ui.rbStd, SIGNAL("clicked()"), self.std_hk_select)
         QObject.connect(self.ui.rbHK, SIGNAL("clicked()"), self.std_hk_select)
@@ -61,7 +63,7 @@ class MainWindow(QMainWindow):
                 self.ui.btnSaveAs.setEnabled(False)
 
     def update_char_count(self):
-        self.ui.lblCharCount.setText(f"[ {len(self.ui.tbSource.toPlainText()):,} chars ]")
+        self.ui.lblCharCount.setText(f"[ {len(self.ui.tbSource.document().toPlainText()):,} chars ]")
 
     def detect_source_text_info(self):
         text = self.ui.tbSource.toPlainText()
@@ -282,6 +284,12 @@ class MainWindow(QMainWindow):
     def btn_preview_clear_clicked(self):
         self.ui.tbPreview.clear()
         self.ui.statusbar.showMessage("File preview cleared.")
+
+    def btn_clear_tb_source_clicked(self):
+        self.ui.tbSource.clear()
+
+    def btn_clear_tb_destination_clicked(self):
+        self.ui.tbDestination.clear()
 
 
 def btn_exit_click():
