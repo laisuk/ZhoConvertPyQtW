@@ -3,7 +3,8 @@ import os
 import re
 import sys
 
-from PySide6.QtCore import Qt, QObject, SIGNAL
+from PySide6.QtCore import Qt
+from PySide6.QtGui import QClipboard
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 from opencc import OpenCC  # pip install opencc-python-reimplemented
 
@@ -34,10 +35,10 @@ class MainWindow(QMainWindow):
         self.ui.rbHK.clicked.connect(self.std_hk_select)
         self.ui.rbZhTw.clicked.connect(self.zhtw_select)
         self.ui.btnDetect.clicked.connect(self.detect_source_text_info)
-        QObject.connect(self.ui.tabWidget, SIGNAL("currentChanged(int)"), self.tab_bar_changed)
-        # self.ui.tabWidget.currentChanged.connect(self.tab_bar_changed)
-        QObject.connect(self.ui.cbZhTw, SIGNAL("clicked(bool)"), self.cbzhtw_clicked)
-        # self.ui.cbZhTw.clicked.connect(self.cbzhtw_clicked)
+        # QObject.connect(self.ui.tabWidget, SIGNAL("currentChanged(int)"), self.tab_bar_changed)
+        self.ui.tabWidget.currentChanged[int].connect(self.tab_bar_changed)
+        # QObject.connect(self.ui.cbZhTw, SIGNAL("clicked(bool)"), self.cbzhtw_clicked)
+        self.ui.cbZhTw.clicked[bool].connect(self.cbzhtw_clicked)
         self.ui.btnAdd.clicked.connect(self.btn_add_clicked)
         self.ui.btnRemove.clicked.connect(self.btn_remove_clicked)
         self.ui.btnClear.clicked.connect(self.btn_clear_clicked)
@@ -85,7 +86,7 @@ class MainWindow(QMainWindow):
             self.ui.rbZhTw.setChecked(True)
 
     def btn_paste_click(self):
-        if not QApplication.clipboard().text():
+        if not QClipboard().text():
             return
         self.ui.tbSource.clear()
         self.ui.tbSource.paste()
@@ -97,7 +98,7 @@ class MainWindow(QMainWindow):
         text = self.ui.tbDestination.toPlainText()
         if not text:
             return None
-        QApplication.clipboard().setText(text)
+        QClipboard().setText(text)
         self.ui.statusbar.showMessage("Contents copied to clipboard")
 
     def btn_openfile_click(self):
@@ -164,10 +165,10 @@ class MainWindow(QMainWindow):
 
             out_dir = self.ui.lineEditDir.text()
             if not os.path.exists(out_dir):
-                msg = QMessageBox()
-                msg.setWindowTitle("Attention")
-                msg.setIcon(QMessageBox.Icon.Information)
-                msg.setText("Invalid output directory.")
+                msg = QMessageBox(QMessageBox.Icon.Information, "Attention", "Invalid output directory.")
+                # msg.setWindowTitle("Attention")
+                # msg.setIcon(QMessageBox.Icon.Information)
+                # msg.setText("Invalid output directory.")
                 msg.setInformativeText("Output directory:\n" + out_dir + "\nnot found.")
                 # msg.setDetailedText("Please set the required output directory.")
                 msg.exec()
@@ -227,9 +228,9 @@ class MainWindow(QMainWindow):
     def btn_add_clicked(self):
         # options = QFileDialog.Option()
         # options |= QFileDialog.DontUseNativeDialog
-        file_dialog = QFileDialog(self, None)
+        # file_dialog = QFileDialog(self)
         # file_dialog.setFileMode(QFileDialog.ExistingFiles)
-        files, _ = file_dialog.getOpenFileNames(self, "Open Files", "", "All Files (*)")
+        files, _ = QFileDialog.getOpenFileNames(self, "Add Files", "", "Text Files (*.txt);;All Files (*.*)")
 
         if files:
             self.display_file_list(files)
@@ -274,8 +275,8 @@ class MainWindow(QMainWindow):
             self.ui.tbPreview.setPlainText(contents)
 
     def btn_out_directory_clicked(self):
-        file_dialog = QFileDialog(self, None)
-        directory = file_dialog.getExistingDirectory(self, "")
+        # file_dialog = QFileDialog(self)
+        directory = QFileDialog.getExistingDirectory(self, "Select output directory")
         if directory:
             self.ui.lineEditDir.setText(directory)
             self.ui.statusbar.showMessage(f"Output directory set: {directory}")
@@ -328,7 +329,7 @@ def convert_punctuation(input_text, config):
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
+    app = QApplication()
     widget = MainWindow()
     widget.show()
     sys.exit(app.exec())
