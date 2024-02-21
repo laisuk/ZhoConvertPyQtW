@@ -1,6 +1,5 @@
 <RCC>
   <qresource prefix="images">
-    <file>resource/icons8-cl-button-48.png</file>
     <file>resource/icons8-play-48.png</file>
     <file>resource/icons8-document-64.png</file>
     <file>resource/icons8-documents-64.png</file>

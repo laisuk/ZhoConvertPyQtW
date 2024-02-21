@@ -3,9 +3,8 @@ import os
 import re
 import sys
 
-from PySide6.QtCore import Qt, SIGNAL, QObject
-from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtWidgets import QFileDialog, QMessageBox
+from PySide6.QtCore import Qt, QObject, SIGNAL
+from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 from opencc import OpenCC  # pip install opencc-python-reimplemented
 
 # Important:
@@ -30,21 +29,21 @@ class MainWindow(QMainWindow):
         self.ui.btnExit.clicked.connect(btn_exit_click)
         self.ui.btnClearTbSource.clicked.connect(self.btn_clear_tb_source_clicked)
         self.ui.btnClearTbDestination.clicked.connect(self.btn_clear_tb_destination_clicked)
-        QObject.connect(self.ui.tbSource, SIGNAL("textChanged()"), self.update_char_count)
-        QObject.connect(self.ui.rbStd, SIGNAL("clicked()"), self.std_hk_select)
-        QObject.connect(self.ui.rbHK, SIGNAL("clicked()"), self.std_hk_select)
-        QObject.connect(self.ui.rbZhTw, SIGNAL("clicked()"), self.zhtw_select)
-        QObject.connect(self.ui.tbSource, SIGNAL("clicked()"), self.zhtw_select)
-        QObject.connect(self.ui.btnDetect, SIGNAL("clicked()"), self.detect_source_text_info)
+        self.ui.tbSource.textChanged.connect(self.update_char_count)
+        self.ui.rbStd.clicked.connect(self.std_hk_select)
+        self.ui.rbHK.clicked.connect(self.std_hk_select)
+        self.ui.rbZhTw.clicked.connect(self.zhtw_select)
+        self.ui.btnDetect.clicked.connect(self.detect_source_text_info)
         QObject.connect(self.ui.tabWidget, SIGNAL("currentChanged(int)"), self.tab_bar_changed)
+        # self.ui.tabWidget.currentChanged.connect(self.tab_bar_changed)
         QObject.connect(self.ui.cbZhTw, SIGNAL("clicked(bool)"), self.cbzhtw_clicked)
+        # self.ui.cbZhTw.clicked.connect(self.cbzhtw_clicked)
         self.ui.btnAdd.clicked.connect(self.btn_add_clicked)
         self.ui.btnRemove.clicked.connect(self.btn_remove_clicked)
         self.ui.btnClear.clicked.connect(self.btn_clear_clicked)
         self.ui.btnPreview.clicked.connect(self.btn_preview_clicked)
         self.ui.btnPreviewClear.clicked.connect(self.btn_preview_clear_clicked)
         self.ui.btnOutDir.clicked.connect(self.btn_out_directory_clicked)
-        # self.ui.tabWidget.currentChanged.connect(self.tab_bar_changed)
         self.ui.actionAbout.triggered.connect(self.action_about_triggered)
         self.ui.actionExit.triggered.connect(btn_exit_click)
 
@@ -169,8 +168,8 @@ class MainWindow(QMainWindow):
                 msg.setWindowTitle("Attention")
                 msg.setIcon(QMessageBox.Icon.Information)
                 msg.setText("Invalid output directory.")
-                msg.setInformativeText("Output directory: " + out_dir + " not found.")
-                msg.setDetailedText("Please set the required output directory.")
+                msg.setInformativeText("Output directory:\n" + out_dir + "\nnot found.")
+                # msg.setDetailedText("Please set the required output directory.")
                 msg.exec()
                 self.ui.statusbar.showMessage("Invalid output directory.")
             else:
@@ -228,7 +227,7 @@ class MainWindow(QMainWindow):
     def btn_add_clicked(self):
         # options = QFileDialog.Option()
         # options |= QFileDialog.DontUseNativeDialog
-        file_dialog = QFileDialog(self)
+        file_dialog = QFileDialog(self, None)
         # file_dialog.setFileMode(QFileDialog.ExistingFiles)
         files, _ = file_dialog.getOpenFileNames(self, "Open Files", "", "All Files (*)")
 
@@ -275,7 +274,7 @@ class MainWindow(QMainWindow):
             self.ui.tbPreview.setPlainText(contents)
 
     def btn_out_directory_clicked(self):
-        file_dialog = QFileDialog(self)
+        file_dialog = QFileDialog(self, None)
         directory = file_dialog.getExistingDirectory(self, "")
         if directory:
             self.ui.lineEditDir.setText(directory)
@@ -297,10 +296,9 @@ def btn_exit_click():
 
 
 def check_text_code(text):
-    converted_text = OpenCC("t2s").convert(text)
-    if converted_text != text:
+    if OpenCC("t2s").convert(text) != text:
         return 1
-    elif OpenCC("s2t").convert(converted_text) != text:
+    elif OpenCC("s2t").convert(text) != text:
         return 2
     else:
         return 0

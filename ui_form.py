@@ -415,7 +415,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_action_main = QHBoxLayout()
         self.horizontalLayout_action_main.setObjectName(u"horizontalLayout_action_main")
-        self.horizontalLayout_action_main.setContentsMargins(10, 10, 10, 5)
+        self.horizontalLayout_action_main.setContentsMargins(10, 10, 10, 0)
         self.horizontalLayout_openFile = QHBoxLayout()
         self.horizontalLayout_openFile.setObjectName(u"horizontalLayout_openFile")
         self.btnOpenFile = QPushButton(self.centralwidget)
