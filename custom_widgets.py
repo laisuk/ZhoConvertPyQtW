@@ -45,7 +45,7 @@ class DragListWidget(QListWidget):
         self.viewport().setAcceptDrops(True)
         self.setDragEnabled(True)
         self.setDropIndicatorShown(True)
-        self.setDefaultDropAction(Qt.MoveAction)
+        self.setDefaultDropAction(Qt.DropAction.CopyAction)
         self.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
         self.setSortingEnabled(True)
 
@@ -69,5 +69,5 @@ class DragListWidget(QListWidget):
 
     def is_item_in_list(self, item_text):
         # Check if the item with given text is already in the list
-        items = self.findItems(item_text, Qt.MatchExactly)
+        items = self.findItems(item_text, Qt.MatchFlag.MatchExactly)
         return len(items) > 0
