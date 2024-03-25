@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'form.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.1
+## Created by: Qt User Interface Compiler version 6.6.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -104,7 +104,6 @@ class Ui_MainWindow(object):
         self.cbZhTw = QCheckBox(self.centralwidget)
         self.cbZhTw.setObjectName(u"cbZhTw")
         self.cbZhTw.setFont(font1)
-        self.cbZhTw.setChecked(True)
 
         self.horizontalLayout_idioms.addWidget(self.cbZhTw, 0, Qt.AlignHCenter)
 
@@ -141,7 +140,7 @@ class Ui_MainWindow(object):
         self.tbSource = TextEditWidget(self.tab_main)
         self.tbSource.setObjectName(u"tbSource")
         font2 = QFont()
-        font2.setFamilies([u"Consolas"])
+        font2.setFamilies([u"Microsoft YaHei UI"])
         font2.setPointSize(11)
         self.tbSource.setFont(font2)
         self.tbSource.setFrameShape(QFrame.Box)
@@ -172,7 +171,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_source.setObjectName(u"horizontalLayout_source")
         self.lblSource = QLabel(self.tab_main)
         self.lblSource.setObjectName(u"lblSource")
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.lblSource.sizePolicy().hasHeightForWidth())
@@ -188,7 +187,7 @@ class Ui_MainWindow(object):
 
         self.lblSourceCode = QLabel(self.tab_main)
         self.lblSourceCode.setObjectName(u"lblSourceCode")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.lblSourceCode.sizePolicy().hasHeightForWidth())
@@ -360,7 +359,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_preview.setObjectName(u"horizontalLayout_preview")
         self.label = QLabel(self.tab_batch)
         self.label.setObjectName(u"label")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -459,7 +458,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_saveExit = QHBoxLayout()
         self.horizontalLayout_saveExit.setObjectName(u"horizontalLayout_saveExit")
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_saveExit.addItem(self.horizontalSpacer)
 

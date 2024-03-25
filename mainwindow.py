@@ -3,7 +3,7 @@ import os
 import re
 import sys
 
-from PySide6.QtCore import Qt
+from PySide6.QtCore import Qt, QObject, SIGNAL
 from PySide6.QtGui import QClipboard
 from PySide6.QtWidgets import QApplication, QMainWindow, QFileDialog, QMessageBox
 from opencc import OpenCC  # pip install opencc-python-reimplemented
@@ -35,10 +35,11 @@ class MainWindow(QMainWindow):
         self.ui.rbHK.clicked.connect(self.std_hk_select)
         self.ui.rbZhTw.clicked.connect(self.zhtw_select)
         self.ui.btnDetect.clicked.connect(self.detect_source_text_info)
-        # QObject.connect(self.ui.tabWidget, SIGNAL("currentChanged(int)"), self.tab_bar_changed)
-        self.ui.tabWidget.currentChanged[int].connect(self.tab_bar_changed)
+        QObject.connect(self.ui.tabWidget, SIGNAL("currentChanged(int)"), self.tab_bar_changed)
+        # self.ui.tabWidget.currentChanged[int].connect(self.tab_bar_changed)
         # QObject.connect(self.ui.cbZhTw, SIGNAL("clicked(bool)"), self.cbzhtw_clicked)
         self.ui.cbZhTw.clicked[bool].connect(self.cbzhtw_clicked)
+        # self.ui.cbZhTw.stateChanged[int].connect(self.cbzhtw_clicked)
         self.ui.btnAdd.clicked.connect(self.btn_add_clicked)
         self.ui.btnRemove.clicked.connect(self.btn_remove_clicked)
         self.ui.btnClear.clicked.connect(self.btn_clear_clicked)
@@ -49,7 +50,7 @@ class MainWindow(QMainWindow):
         self.ui.actionExit.triggered.connect(btn_exit_click)
 
     def action_about_triggered(self):
-        QMessageBox.about(self, "About", "Zho Converter version 1.0 (c) 2024 Bryan Lai")
+        QMessageBox.about(self, "About", "Zho Converter version 1.0.0 (c) 2024 Bryan Lai")
 
     def tab_bar_changed(self, index: int) -> None:
         match index:
@@ -287,9 +288,13 @@ class MainWindow(QMainWindow):
 
     def btn_clear_tb_source_clicked(self):
         self.ui.tbSource.clear()
+        self.ui.lblSourceCode.setText("")
+        self.ui.tbSource.content_filename = ""
+        self.ui.lblFilename.setText("")
 
     def btn_clear_tb_destination_clicked(self):
         self.ui.tbDestination.clear()
+        self.ui.lblDestinationCode.setText("")
 
 
 def btn_exit_click():
@@ -297,9 +302,9 @@ def btn_exit_click():
 
 
 def check_text_code(text):
-    if OpenCC("t2s").convert(text) != text:
+    if text != OpenCC("t2s").convert(text):
         return 1
-    elif OpenCC("s2t").convert(text) != text:
+    elif text != OpenCC("s2t").convert(text):
         return 2
     else:
         return 0

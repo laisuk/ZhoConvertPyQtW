@@ -121,9 +121,6 @@
           <property name="text">
            <string>ZH/TW Idioms （通用語）</string>
           </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
          </widget>
         </item>
         <item alignment="Qt::AlignHCenter">
@@ -193,7 +190,7 @@
              <widget class="TextEditWidget" name="tbSource">
               <property name="font">
                <font>
-                <family>Consolas</family>
+                <family>Microsoft YaHei UI</family>
                 <pointsize>11</pointsize>
                </font>
               </property>
@@ -215,7 +212,7 @@
              <widget class="QPlainTextEdit" name="tbDestination">
               <property name="font">
                <font>
-                <family>Consolas</family>
+                <family>Microsoft YaHei UI</family>
                 <pointsize>11</pointsize>
                </font>
               </property>
@@ -544,7 +541,7 @@
              <widget class="QPlainTextEdit" name="tbPreview">
               <property name="font">
                <font>
-                <family>Consolas</family>
+                <family>Microsoft YaHei UI</family>
                 <pointsize>11</pointsize>
                </font>
               </property>
